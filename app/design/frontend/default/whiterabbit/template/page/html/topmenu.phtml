@@ -1,0 +1,41 @@
+<?php
+/**
+ * Top menu for store
+ *
+ * @see Mage_Page_Block_Html_Topmenu
+ */
+?>
+<?php $_menu = $this->getHtml('level-top') ?>
+
+<div id="navigation">
+    <div class="container">
+        <ul class="navi cf">
+            <li class="nav01"><a href="productPage.html">Juice menu</a>
+                <?php
+                    $category = Mage::getModel('catalog/category')->load(3);
+                    $childCateId = explode(',',$category->getChildren());
+                ?>
+                    <ul class="nav-sub">
+                        <?php foreach ($childCateId as $cate): ?>
+                            <?php
+                                $childCate = Mage::getModel('catalog/category')->load($cate);
+                            ?>
+                                <li><a href="<?php echo $childCate->getUrl(); ?>"><?php echo $childCate->getName(); ?></a></li>
+
+                        <?php endforeach//echo $_menu;  ?>
+                    </ul>
+            </li>
+            <li class="nav02"><a href="orderPick.html">Order</a></li>
+            <li class="nav03"><a href="#">Learn</a>
+                <ul class="nav-sub nav-sub02">
+                    <li><a href="#">Why cold pressed?</a></li>
+                    <li><a href="#">Why &amp; how to cleanse</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </li>
+            <li class="nav04"><a href="#">About</a></li>
+            <li class="nav05"><a href="#">Contact</a></li>
+            <li class="nav06"><a href="#">Extra Tab</a></li>
+        </ul>
+    </div> <!-- container -->
+</div> <!-- navigation -->
